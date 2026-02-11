@@ -122,8 +122,8 @@ build_layer_activators() {
 
 # Generate a single row of the 4-row key thumbnail
 # Physical layout rows: 0=[0,1] 1=[2,3] 2=[4,5] 3=[6,7]
-# Row 0,3 (center): " XY" (space + 2 chars)
-# Row 1,2 (sides):  "X  Y" (char + 2 spaces + char)
+# Row 0,3 (center): "  X X"  (center pair, small gap)
+# Row 1,2 (sides):  "X     Y" (wide gap, matching physical layout)
 generate_thumbnail_row() {
     local row="$1"
     local active_pos="$2"  # -1 for none
@@ -141,8 +141,8 @@ generate_thumbnail_row() {
     [[ $active_pos -eq $right_btn ]] && right_char="■"
 
     case $row in
-        0|3) echo " ${left_char}${right_char}" ;;
-        1|2) echo "${left_char}  ${right_char}" ;;
+        0|3) echo "  ${left_char} ${right_char}" ;;
+        1|2) echo "${left_char}     ${right_char}" ;;
     esac
 }
 
@@ -319,10 +319,10 @@ generate_layer_ascii() {
     layer_label=$(printf "LAYER %d: %-12s" "$layer_num" "$layer_name")
 
     printf '═══════════════════════════════════════════════════════════════════════════════\n'
-    printf '                                     %s\n' "$t0"
-    printf '%-30s       %s                Pointer: %s\n' "$layer_label" "$t1" "$pointer_mode"
+    printf '                                    %s\n' "$t0"
+    printf '%-30s      %s              Pointer: %s\n' "$layer_label" "$t1" "$pointer_mode"
     printf '                                    %s\n' "$t2"
-    printf '                                     %s\n' "$t3"
+    printf '                                    %s\n' "$t3"
     printf '═══════════════════════════════════════════════════════════════════════════════\n'
 
     cat << EOF
