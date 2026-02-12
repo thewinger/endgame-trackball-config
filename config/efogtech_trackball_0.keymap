@@ -1,10 +1,11 @@
-#include <dt-bindings/zmk/p2sm.h>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/p2sm.h>
 #include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/ext_power.h>
 
 #define LAYER_DEFAULT      0
 #define LAYER_EXTRAS       1
@@ -12,10 +13,13 @@
 #define LAYER_SCROLL       3
 #define LAYER_SNIPE        4
 #define LAYER_USER         5
+
 #define TWIST_MULTIPLIER   1
-#define TWIST_DIVISOR      1
+#define TWIST_DIVISOR      8
+
 #define SCROLL_MULTIPLIER  1
 #define SCROLL_DIVISOR     10
+
 #define SNIPE_MULTIPLIER   1
 #define SNIPE_DIVISOR      4
 
@@ -27,12 +31,14 @@
             display-name = "Default";
             DECLARE_ENCODERS;
             bindings = <
-&ltmkp LAYER_SNIPE ENTER  &ltmkp LAYER_EXTRAS ESC
-&mkp MCLK                 &kp LS(LA(LC(LG(S))))
-&mkp LCLK                 &mkp RCLK
-&ltm LAYER_SCROLL LCLK    &ltm LAYER_DEVICE RCLK
-&kp C_VOL_UP              &kp LG(TAB)
-&kp C_VOL_DN              &kp LG(LS(TAB))
+              // buttons
+              &ltmkp LAYER_SNIPE ENTER  &ltmkp LAYER_EXTRAS ESC
+              &mkp MCLK                 &kp LS(LA(LC(LG(S))))
+              &mkp LCLK                 &mkp RCLK
+              &ltm LAYER_SCROLL LCLK    &ltm LAYER_DEVICE RCLK
+              // rotary encoders
+              &kp C_VOL_UP              &kp LG(TAB)
+              &kp C_VOL_DN              &kp LG(LS(TAB))
             >;
         };
 
@@ -40,12 +46,12 @@
             display-name = "Extras";
             DECLARE_ENCODERS;
             bindings = <
-&kp LG(C)     &kp LG(V)
-&kp LG(X)     &kp LG(Z)
-&kp LG(Z)     &kp LG(C)
-&trans        &kp LG(V)
-&kp C_VOL_UP  &kp LG(TAB)
-&kp C_VOL_DN  &kp LG(LS(TAB))
+              &kp LG(C)     &kp LG(V)
+              &kp LG(X)     &kp LG(Z)
+              &kp LG(Z)     &kp LG(C)
+              &trans        &kp LG(V)
+              &kp C_VOL_UP  &kp LG(TAB)
+              &kp C_VOL_DN  &kp LG(LS(TAB))
             >;
         };
 
@@ -53,12 +59,12 @@
             display-name = "Device";
             DECLARE_ENCODERS;
             bindings = <
-&rgb_off        &rgb_ug RGB_EFF
-&bt BT_CLR      &bt BT_SEL 0
-&rgb_tog        &bt BT_SEL 1
-&studio_unlock  &trans
-&kp C_VOL_UP    &kp LG(TAB)
-&kp C_VOL_DN    &kp LG(LS(TAB))
+        &rgb_off        &rgb_ug RGB_EFF
+        &bt BT_CLR      &bt BT_SEL 0
+        &rgb_tog        &bt BT_SEL 1
+        &studio_unlock  &trans
+        &kp C_VOL_UP    &kp LG(TAB)
+        &kp C_VOL_DN    &kp LG(LS(TAB))
             >;
         };
 
