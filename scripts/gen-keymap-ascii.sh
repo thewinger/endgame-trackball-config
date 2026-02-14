@@ -64,6 +64,7 @@ declare -A LABELS=(
 
     # Special
     ["&trans"]="."
+    ["&none"]="×"
     ["&studio_unlock"]="Studio"
     ["&soft_off"]="Power Off"
 )
