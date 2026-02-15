@@ -98,20 +98,21 @@
             >;
         };
 
-		layer6 {
-			display-name = "User";
-			DECLARE_ENCODERS;
-			bindings = <
-				&trans        &trans
-				&trans        &trans
-				&trans        &trans
-				&trans        &trans
+        layer6 {
+            display-name = "User";
+            DECLARE_ENCODERS;
+            bindings = <
+              &trans        &trans
+              &trans        &trans
+              &trans        &trans
+              &trans        &trans
 
-				&kp C_VOL_UP  &kp LG(TAB)
-				&kp C_VOL_DN  &kp LG(LS(TAB))
-		    >;
-		};
-	};
+              &kp C_VOL_UP  &kp LG(TAB)
+              &kp C_VOL_DN  &kp LG(LS(TAB))
+            >;
+        };
+    };
+
 
 	trackball {
 		input-processors = <&zip_scroll_scaler TWIST_MULTIPLIER TWIST_DIVISOR>,
@@ -133,29 +134,14 @@
 		};
 	};
 
-	macros {
-		rgb_tog: rgb_tog {
-			compatible = "zmk,behavior-macro";
-			display-name = "Toggle RGB";
-			#binding-cells = <0>;
-			wait-ms = <20>;
-			bindings
-			= <&rgb_ug RGB_TOG>
-			, <&ext_power EP_TOG>
-			;
-		};
-
-		rgb_off: rgb_off {
-			compatible = "zmk,behavior-macro";
-			display-name = "RGB off";
-			#binding-cells = <0>;
-			wait-ms = <20>;
-			bindings
-			= <&ext_power EP_OFF>
-			, <&rgb_ug RGB_OFF>
-			;
-		};
-	};
+        rgb_off: rgb_off {
+            compatible = "zmk,behavior-macro";
+            display-name = "RGB off";
+            #binding-cells = <0>;
+            wait-ms = <20>;
+            bindings = <&ext_power EP_OFF &rgb_ug RGB_OFF>;
+        };
+    };
 };
 
 /* KEYMAP_ASCII_START
