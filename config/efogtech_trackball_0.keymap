@@ -113,33 +113,47 @@
         };
     };
 
+    trackball {
+        input-processors = <&zip_scroll_scaler TWIST_MULTIPLIER TWIST_DIVISOR>,
+                           <&zip_pointer_accel>, <&zip_scroll_accel>,
+                           <&zip_rotate_pointer>, <&zip_rotate_scroll>,
+                           <&zip_ble_report_rate_limit>;
 
-	trackball {
-		input-processors = <&zip_scroll_scaler TWIST_MULTIPLIER TWIST_DIVISOR>,
-						   <&zip_pointer_accel>, <&zip_scroll_accel>,
-						   <&zip_rotate_pointer>, <&zip_rotate_scroll>,
-		                   <&zip_ble_report_rate_limit>;
+        scroll {
+            layers = <LAYER_SCROLL>;
+            input-processors = <&zip_xy_scaler SCROLL_MULTIPLIER SCROLL_DIVISOR>, <&zip_axis_clamper>,
+                               <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>,
+                               <&zip_rotate_scroll>, <&zip_scroll_accel>, <&zip_ble_report_rate_limit>;
+        };
 
-		scroll {
-			layers = <LAYER_SCROLL>;
-			input-processors = <&zip_xy_scaler SCROLL_MULTIPLIER SCROLL_DIVISOR>, <&zip_axis_clamper>,
-							   <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>,
-							   <&zip_rotate_scroll>, <&zip_scroll_accel>, <&zip_ble_report_rate_limit>;
-		};
+        snipe {
+            layers = <LAYER_SNIPE>;
+            input-processors = <&zip_xy_scaler SNIPE_MULTIPLIER SNIPE_DIVISOR>,
+                               <&zip_rotate_pointer>, <&zip_rotate_scroll>, <&zip_ble_report_rate_limit>;
+        };
+    };
 
-		snipe {
-			layers = <LAYER_SNIPE>;
-			input-processors = <&zip_xy_scaler SNIPE_MULTIPLIER SNIPE_DIVISOR>,
-							   <&zip_rotate_pointer>, <&zip_rotate_scroll>, <&zip_ble_report_rate_limit>;
-		};
-	};
+    macros {
+        rgb_tog: rgb_tog {
+            compatible = "zmk,behavior-macro";
+            display-name = "Toggle RGB";
+            #binding-cells = <0>;
+            wait-ms = <20>;
+            bindings
+            = <&rgb_ug RGB_TOG>
+            , <&ext_power EP_TOG>
+            ;
+        };
 
         rgb_off: rgb_off {
             compatible = "zmk,behavior-macro";
             display-name = "RGB off";
             #binding-cells = <0>;
             wait-ms = <20>;
-            bindings = <&ext_power EP_OFF &rgb_ug RGB_OFF>;
+            bindings
+            = <&ext_power EP_OFF>
+            , <&rgb_ug RGB_OFF>
+            ;
         };
     };
 };
