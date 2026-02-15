@@ -14,7 +14,7 @@
 #define LAYER_SNIPE        4
 #define LAYER_USER         5
 
-#define TWIST_MULTIPLIER   1
+#define TWIST_MULTIPLIER   -1
 #define TWIST_DIVISOR      8
 
 #define SCROLL_MULTIPLIER  1
@@ -33,7 +33,7 @@
             bindings = <
               // buttons
               &ltmkp LAYER_SNIPE ENTER  &ltmkp LAYER_EXTRAS ESC
-              &mkp MCLK                 &kp LS(LA(LC(LG(S))))
+              &mkp MCLK                 &mkp MCLK
               &mkp LCLK                 &mkp RCLK
               &ltm LAYER_SCROLL LCLK    &ltm LAYER_DEVICE RCLK
               // rotary encoders
@@ -50,6 +50,7 @@
               &kp LG(X)     &kp LG(Z)
               &kp LG(Z)     &kp LG(C)
               &trans        &kp LG(V)
+
               &kp C_VOL_UP  &kp LG(TAB)
               &kp C_VOL_DN  &kp LG(LS(TAB))
             >;
@@ -59,12 +60,13 @@
             display-name = "Device";
             DECLARE_ENCODERS;
             bindings = <
-        &rgb_off        &rgb_ug RGB_EFF
-        &bt BT_CLR      &bt BT_SEL 0
-        &rgb_tog        &bt BT_SEL 1
-        &studio_unlock  &trans
-        &kp C_VOL_UP    &kp LG(TAB)
-        &kp C_VOL_DN    &kp LG(LS(TAB))
+              &rgb_off        &rgb_ug RGB_EFF
+              &bt BT_CLR      &bt BT_SEL 0
+              &rgb_tog        &bt BT_SEL 1
+              &studio_unlock  &trans
+
+              &kp C_VOL_UP    &kp LG(TAB)
+              &kp C_VOL_DN    &kp LG(LS(TAB))
             >;
         };
 
@@ -72,12 +74,13 @@
             display-name = "Scroll";
             DECLARE_ENCODERS;
             bindings = <
-&sens P2SM_DEC 1  &sens P2SM_INC 1
-&trans            &scrlsens P2SM_INC 1
-&rrl 1            &scrlsens P2SM_DEC 1
-&trans            &trans
-&sens P2SM_DEC 1  &scrlsens P2SM_INC 1
-&sens P2SM_INC 1  &scrlsens P2SM_DEC 1
+              &sens P2SM_DEC 1  &sens P2SM_INC 1
+              &trans            &scrlsens P2SM_INC 1
+              &rrl 1            &scrlsens P2SM_DEC 1
+              &trans            &trans
+
+              &sens P2SM_DEC 1  &scrlsens P2SM_INC 1
+              &sens P2SM_INC 1  &scrlsens P2SM_DEC 1
             >;
         };
 
@@ -85,12 +88,13 @@
             display-name = "Snipe";
             DECLARE_ENCODERS;
             bindings = <
-&trans     &soft_off
-&trans     &trans
-&trans     &trans
-&trans     &trans
-&kp LEFT   &kp RIGHT
-&kp RIGHT  &kp LEFT
+              &trans     &soft_off
+              &trans     &trans
+              &trans     &trans
+              &trans     &trans
+
+              &kp LEFT   &kp RIGHT
+              &kp RIGHT  &kp LEFT
             >;
         };
 
